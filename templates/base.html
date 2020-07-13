@@ -1,0 +1,38 @@
+<html>
+  <head>
+  <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-primary justify-content-between">
+      <div class="container">
+     <a class="n avbar-brand text-light" href="/">Feedback</a>
+        <ul class="nav nav-bar flex-row float-right">
+          {% if session['username'] %}
+          <li class="nav-item">
+            <a class="nav-link pr-3 text-light" href="/logout">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link pr-3 text-light" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/register">Sign up</a>
+          </li>
+          {% endif %}
+        </ul>
+     
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top: 2em">
+      {% for msg in get_flashed_messages() %}
+        <div class="alert alert-danger">{{ msg }}</div>
+      {% endfor %}  
+
+      {% block content %}
+      {% endblock %}
+    </div>
+  
+  </body>
+</html>
